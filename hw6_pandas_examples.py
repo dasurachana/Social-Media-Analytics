@@ -15,7 +15,7 @@ df = pd.DataFrame(d)
 print(df)
 
 # You can also make a new dataframe by loading a pre-existing CSV
-icecream_df = pd.read_csv("C:\social_Media_Analytics\Social-Media-Analytics\icecream.csv")
+icecream_df = pd.read_csv("icecream.csv")
 print(icecream_df)
 print(icecream_df.head())
 
