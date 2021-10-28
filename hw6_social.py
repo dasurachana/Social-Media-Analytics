@@ -36,7 +36,14 @@ Parameters: str
 Returns: str
 '''
 def parseName(fromString):
-    return
+    start = fromString.find(" ")
+    startSlicing=fromString[start:]
+    end = startSlicing.find("(")
+    name=startSlicing[:end]
+    name=name.strip()
+    #print(name)
+    return name
+
 
 
 '''
@@ -46,7 +53,13 @@ Parameters: str
 Returns: str
 '''
 def parsePosition(fromString):
-    return
+    position_Start=fromString.find("(")
+    positionSlicing=fromString[position_Start+1:]
+    position_End=positionSlicing.find(" from")
+    position=positionSlicing[:position_End]
+    position=position.strip()
+    #print(position)
+    return position
 
 
 '''
@@ -55,8 +68,15 @@ parseState(fromString)
 Parameters: str
 Returns: str
 '''
+#assert(parseState("From: Steny Hoyer (Representative from Maryland)") == "Maryland")
 def parseState(fromString):
-    return
+    state_Start=fromString.find("from")
+    stateSlicing=fromString[state_Start+4:]
+    state_End=stateSlicing.find(")")
+    state=stateSlicing[:state_End]
+    state=state.strip()
+    #print(state)
+    return state
 
 
 '''
@@ -264,7 +284,10 @@ def scatterPlot(xValues, yValues, labels, title):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
 
-    test.testMakeDataFrame()
+    #test.testMakeDataFrame()
+    test.testParseName()
+    test.testParsePosition()
+    test.testParseState()
     # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
