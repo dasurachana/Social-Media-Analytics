@@ -68,7 +68,7 @@ parseState(fromString)
 Parameters: str
 Returns: str
 '''
-#assert(parseState("From: Steny Hoyer (Representative from Maryland)") == "Maryland")
+
 def parseState(fromString):
     state_Start=fromString.find("from")
     stateSlicing=fromString[state_Start+4:]
