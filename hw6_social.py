@@ -17,6 +17,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
 endChars = [ " ", "\n", "#", ".", ",", "?", "!", ":", ";", ")" ]
+df={}
 
 '''
 makeDataFrame(filename)
@@ -178,8 +179,22 @@ Parameters: dataframe ; str ; str
 Returns: dict mapping strs to ints
 '''
 def getDataCountByState(data, colName, dataToCount):
-    return
-
+    dict_count={}
+    # print(data["state"])
+    if dataToCount=="" and colName=="":
+        for index,row in data.iterrows():
+            if row["state"] not in dict_count:
+                dict_count[row["state"]] = 1
+            else:
+                dict_count[row["state"]]+=1
+    else:
+        for index,row in data.iterrows():
+            if dataToCount == row[colName] :
+                if row["state"] not in dict_count:
+                    dict_count[row["state"]] = 1
+                else:
+                    dict_count[row["state"]]+=1
+    return dict_count
 
 '''
 getDataForRegion(data, colName)
@@ -322,19 +337,24 @@ def scatterPlot(xValues, yValues, labels, title):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
 
-    test.testMakeDataFrame()
-    test.testParseName()
-    test.testParsePosition()
-    test.testParseState()
-    test.testFindHashtags()
-    test.testGetRegionFromState()
-    test.testAddColumns()
-    test.testFindSentiment()
-    test.testAddSentimentColumn()
+    # test.testMakeDataFrame()
+    # test.testParseName()
+    # test.testParsePosition()
+    # test.testParseState()
+    # test.testFindHashtags()
+    # test.testGetRegionFromState()
+    # test.testAddColumns()
+    # test.testFindSentiment()
+    # test.testAddSentimentColumn()
+    df = makeDataFrame("data/politicaldata.csv")
+    stateDf = makeDataFrame("data/statemappings.csv")
+    addColumns(df, stateDf)
+    addSentimentColumn(df)
     # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # test.runWeek1()
+    test.testGetDataCountByState(df)
 
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
