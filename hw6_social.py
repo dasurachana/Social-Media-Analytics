@@ -16,6 +16,7 @@ nltk.download('vader_lexicon', quiet=True)
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
+from collections import Counter
 endChars = [ " ", "\n", "#", ".", ",", "?", "!", ":", ";", ")" ]
 df={}
 
@@ -302,8 +303,14 @@ Parameters: dict mapping strs to ints ; dict mapping strs to ints ; int ; str
 Returns: None
 '''
 def graphTopNStates(stateCounts, stateFeatureCounts, n, title):
-    return
 
+    feature_Rate={}
+    topstates={}
+    for each in stateFeatureCounts:
+        feature_Rate[each]=(stateFeatureCounts[each]/stateCounts[each]) 
+    topstates=dict(Counter(feature_Rate).most_common (n)) 
+    graphStateCounts(topstates, "Top n Featured") 
+    return
 
 '''
 graphRegionComparison(regionDicts, title)
