@@ -309,7 +309,7 @@ def graphTopNStates(stateCounts, stateFeatureCounts, n, title):
     for each in stateFeatureCounts:
         feature_Rate[each]=(stateFeatureCounts[each]/stateCounts[each]) 
     topstates=dict(Counter(feature_Rate).most_common (n)) 
-    graphStateCounts(topstates, "Top n Featured") 
+    graphStateCounts(topstates, title) 
     return
 
 '''
@@ -322,15 +322,15 @@ def graphRegionComparison(regionDicts, title):
     feature_Lst=[]
     region_Lst=[]
     region_Value=[]
-    for each in regionDicts:
+    for i in regionDicts:
         temp_List=[]
-        x=regionDicts[each]
+        x=regionDicts[i]
         for each in x:
             if each not in feature_Lst:
                 feature_Lst.append(each)
             temp_List.append(x[each])
         region_Value.append(temp_List)
-        region_Lst.append(each)
+        region_Lst.append(i)
     sideBySideBarPlots(feature_Lst, region_Lst, region_Value, title)
     return
 
@@ -342,8 +342,18 @@ Parameters: dataframe
 Returns: None
 '''
 def graphHashtagSentimentByFrequency(data):
+    dict1=getHashtagRates (data)
+    mostcommon=mostCommonHashtags (dict1,50)
+    hashtag_Lst=[]
+    freq_Lst=[]
+    sentiment_Lst=[]
+    for each in mostcommon:
+        hashtag_Lst.append(each)
+        freq_Lst.append (mostcommon[each])
+        sentiment_Lst.append(getHashtagSentiment(data,each))
+    
+    scatterPlot(freq_Lst, sentiment_Lst, hashtag_Lst, "Hashtags Frequency")
     return
-
 
 #### PART 3 PROVIDED CODE ####
 """
