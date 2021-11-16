@@ -280,8 +280,20 @@ Returns: None
 '''
 def graphStateCounts(stateCounts, title):
     import matplotlib.pyplot as plt
+    #map_States={}
+    states_Keys=[]
+    states_Values=[]
+    for key in stateCounts:
+        states_Keys.append(key)
+        states_Values.append(stateCounts[key])
+    for index in range(len(states_Values)):
+        plt.bar(states_Keys[index],states_Values[index])
+    plt.xticks (ticks=list (range(len(states_Keys))),label=states_Keys,rotation="vertical")
+    plt.title(title)
+    plt.xlabel("state")
+    plt.ylabel("Count")
+    plt.show()
     return
-
 
 '''
 graphTopNStates(stateCounts, stateFeatureCounts, n, title)
@@ -380,26 +392,26 @@ if __name__ == "__main__":
     # test.testAddColumns()
     # test.testFindSentiment()
     # test.testAddSentimentColumn()
-    df = makeDataFrame("data/politicaldata.csv")
-    stateDf = makeDataFrame("data/statemappings.csv")
-    addColumns(df, stateDf)
-    addSentimentColumn(df)
-    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    # test.week1Tests()
-    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    # test.runWeek1()
-    test.testGetDataCountByState(df)
-    test.testGetDataForRegion(df)
-    test.testGetHashtagRates(df)
-    test.testMostCommonHashtags(df)
-    test.testGetHashtagSentiment(df)
+    # df = makeDataFrame("data/politicaldata.csv")
+    # stateDf = makeDataFrame("data/statemappings.csv")
+    # addColumns(df, stateDf)
+    # addSentimentColumn(df)
+    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    test.week1Tests()
+    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek1()
+    # test.testGetDataCountByState(df)
+    # test.testGetDataForRegion(df)
+    # test.testGetHashtagRates(df)
+    # test.testMostCommonHashtags(df)
+    # test.testGetHashtagSentiment(df)
 
     ## Uncomment these for Week 2 ##
-    """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek2()"""
+    test.runWeek2()
 
-    ## Uncomment these for Week 3 ##
-    """print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek3()"""
+    # Uncomment these for Week 3 
+    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek3()
