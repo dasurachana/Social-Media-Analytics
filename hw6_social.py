@@ -104,8 +104,9 @@ Parameters: dataframe ; str
 Returns: str
 '''
 def getRegionFromState(stateDf, state):
-    return
-
+    #print(stateDf)
+    region=stateDf.loc[stateDf['state']==state,'region']
+    return region.values[0]
 
 '''
 addColumns(data, stateDf)
@@ -292,11 +293,12 @@ def scatterPlot(xValues, yValues, labels, title):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
 
-    #test.testMakeDataFrame()
-    # test.testParseName()
-    # test.testParsePosition()
-    # test.testParseState()
+    test.testMakeDataFrame()
+    test.testParseName()
+    test.testParsePosition()
+    test.testParseState()
     test.testFindHashtags()
+    test.testGetRegionFromState()
     # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
