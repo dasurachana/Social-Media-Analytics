@@ -68,7 +68,7 @@ parseState(fromString)
 Parameters: str
 Returns: str
 '''
-#assert(parseState("From: Steny Hoyer (Representative from Maryland)") == "Maryland")
+
 def parseState(fromString):
     state_Start=fromString.find("from")
     stateSlicing=fromString[state_Start+4:]
@@ -86,9 +86,17 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    return
-
-
+    tags=[]
+    message_List= message.split("#")
+    for each in message_List[1:]:
+        n_Str=""
+        for char in each:
+            if char in endChars:
+                break
+            n_Str=n_Str+char
+        n_Str="#"+n_Str
+        tags.append(n_Str)
+    return tags
 '''
 getRegionFromState(stateDf, state)
 #6 [Check6-1]
@@ -285,9 +293,10 @@ def scatterPlot(xValues, yValues, labels, title):
 if __name__ == "__main__":
 
     #test.testMakeDataFrame()
-    test.testParseName()
-    test.testParsePosition()
-    test.testParseState()
+    # test.testParseName()
+    # test.testParsePosition()
+    # test.testParseState()
+    test.testFindHashtags()
     # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
